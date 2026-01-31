@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie - Official Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary-yellow: #ffcc00; 
+            --dark: #222; 
+            --light-gray: #f9f9f9;
+        }
+        
+        * { 
+            scroll-behavior: smooth; 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            background: #fff; 
+            color: var(--dark); 
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 5%; 
+            position: sticky; 
+            top: 0; 
+            background: #fff; 
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        }
+
+        .logo { 
+            font-size: 26px; 
+            font-weight: 800; 
+            color: var(--primary-yellow); 
+            text-decoration: none;
+        }
+
+        nav a { 
+            margin: 0 15px; 
+            text-decoration: none; 
+            color: var(--dark); 
+            font-weight: 500; 
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-yellow);
+        }
+        
+        .nav-btns { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+
+        .signin-btn { 
+            background: var(--primary-yellow); 
+            padding: 10px 25px; 
+            border-radius: 25px; 
+            border: none; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+
+        .signin-btn:hover { 
+            background: #e6b800; 
+            transform: translateY(-2px);
+        }
+
+        .cart-icon { 
+            font-size: 22px; 
+            position: relative; 
+            cursor: pointer; 
+        }
+
+        #cart-count { 
+            position: absolute; 
+            top: -10px; 
+            right: -10px; 
+            background: #ff4757; 
+            color: white; 
+            font-size: 11px; 
+            padding: 2px 6px; 
+            border-radius: 50%; 
+            font-weight: bold; 
+        }
+
+        /* Hero Section */
+        .hero { 
+            display: flex; 
+            align-items: center; 
+            padding: 80px 10%; 
+            flex-wrap: wrap; 
+            gap: 40px;
+        }
+
+        .hero-text { flex: 1; min-width: 300px; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+        .hero-text span { color: var(--primary-yellow); }
+        .hero-text p { font-size: 1.1rem; color: #666; margin-bottom: 30px; }
+
+        .hero-img { flex: 1; text-align: center; }
+        .hero-img img { 
+            border-radius: 50%; 
+            border: 15px solid #fff9e6; 
+            width: 100%; 
+            max-width: 450px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Generic Section Styling */
+        .section { padding: 80px 10%; text-align: center; }
+        .yellow-tag { color: var(--primary-yellow); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px; }
+        h2 { font-size: 2.5rem; margin-top: 0; margin-bottom: 40px; }
+
+        /* Service Cards */
+        .service-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .service-card { 
+            padding: 40px; 
+            border-radius: 20px; 
+            background: var(--light-gray);
+            transition: 0.3s;
+        }
+
+        .service-card:hover { 
+            background: #fff; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* Menu Grid */
+        .menu-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 25px; 
+        }
+
+        .menu-card { 
+            padding: 25px; 
+            background: #fff; 
+            border-radius: 20px; 
+            border: 1px solid #eee; 
+            transition: 0.3s; 
+            text-align: center;
+        }
+
+        .menu-card:hover { 
+            border-color: var(--primary-yellow); 
+            transform: scale(1.03);
+        }
+
+        .add-cart-btn { 
+            background: var(--dark); 
+            color: #fff; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            margin-top: 15px; 
+            cursor: pointer; 
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .add-cart-btn:hover { background: var(--primary-yellow); color: var(--dark); }
+
+        /* Newsletter & Banner */
+        .newsletter-section { background: var(--light-gray); padding: 80px 10%; text-align: center; }
+        .discount-banner { 
+            margin-top: 50px; 
+            border: 3px dashed var(--primary-yellow); 
+            padding: 50px; 
+            border-radius: 30px; 
+            background: #fff; 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto;
+        }
+        .discount-banner h3 { font-size: 3rem; color: #ff4757; margin: 15px 0; }
+
+        /* Reviews */
+        .reviews-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            flex-wrap: wrap; 
+        }
+
+        .review-card { 
+            background: #fff; 
+            border: 1px solid #eee; 
+            padding: 30px; 
+            border-radius: 20px; 
+            max-width: 350px; 
+            text-align: left; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
+        }
+
+        /* Booking Form */
+        .book-container { max-width: 500px; margin: 0 auto; text-align: left; }
+        .book-row { margin-bottom: 15px; }
+        .book-row input { 
+            width: 100%; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+            font-family: inherit;
+        }
+        
+        footer { background: #fff; padding: 60px 10% 20px; border-top: 1px solid #eee; }
+        .footer-cols { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 40px; 
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            nav { display: none; } /* Simplified for mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Foodie.</a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#service">Service</a>
+            <a href="#contact-footer">Contacts</a>
+        </nav>
+        <div class="nav-btns">
+            <div class="cart-icon" onclick="checkout()">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+            <button class="signin-btn" onclick="handleSignIn()">Sign In</button>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <span class="yellow-tag">Hungry?</span>
+            <h1>Enjoy Your<br>Delicious <span>Food</span></h1>
+            <p>We deliver fresh, high-quality meals straight to your doorstep. Fast, reliable, and always tasty.</p>
+            <button class="signin-btn" style="padding: 18px 45px; font-size: 18px;" onclick="addToCart('Special Featured Meal')">Order Now</button>
+            
+            <div style="margin-top:30px; font-size: 24px; display:flex; gap:20px;">
+                <i class="fab fa-instagram" style="cursor:pointer"></i>
+                <i class="fab fa-facebook" style="cursor:pointer"></i>
+                <i class="fab fa-google" style="cursor:pointer"></i>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80" alt="Delicious Food">
+        </div>
+    </section>
+
+    <section class="section" id="service">
+        <span class="yellow-tag">Our Service</span>
+        <h2>How Does It Work?</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <i class="fas fa-mobile-alt" style="font-size: 40px; color: var(--primary-yellow); margin-bottom: 15px;"></i>
+                <h3>Easy To Order</h3>
+                <p>Order your favorite meals in just a few simple steps through our app or website.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shipping-fast" style="font-size: 40px; color: var(--primary-yellow); margin-bottom: 15px;"></i>
+                <h3>Fast Delivery</h3>
+                <p>Our delivery partners ensure your food arrives hot and fresh, on time, every time.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-utensils" style="font-size: 40px; color: var(--primary-yellow); margin-bottom: 15px;"></i>
+                <h3>Best Quality</h3>
+                <p>We work with top-rated chefs to ensure we never compromise on taste or quality.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="menu">
+        <span class="yellow-tag">Our Menu</span>
+        <h2>The Most Popular</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <strong>Veggie Pizza</strong>
+                <p>$12.99</p>
+                <button class="add-cart-btn" onclick="addToCart('Veggie Pizza')">Add to Cart</button>
+            </div>
+            <div class="menu-card">
+                <strong>Fried Chicken</strong>
+                <p>$15.50</p>
+                <button class="add-cart-btn" onclick="addToCart('Fried Chicken')">Add to Cart</button>
+            </div>
+            <div class="menu-card">
+                <strong>Chicken Roll</strong>
+                <p>$8.00</p>
+                <button class="add-cart-btn" onclick="addToCart('Chicken Roll')">Add to Cart</button>
+            </div>
+            <div class="menu-card">
+                <strong>Sub Sandwich</strong>
+                <p>$9.50</p>
+                <button class="add-cart-btn" onclick="addToCart('Sub Sandwich')">Add to Cart</button>
+            </div>
+            <div class="menu-card">
+                <strong>Chicken Lasagna</strong>
+                <p>$14.00</p>
+                <button class="add-cart-btn" onclick="addToCart('Chicken Lasagna')">Add to Cart</button>
+            </div>
+            <div class="menu-card">
+                <strong>Italian Spaghetti</strong>
+                <p>$13.20</p>
+                <button class="add-cart-btn" onclick="addToCart('Italian Spaghetti')">Add to Cart</button>
+            </div>
+            <div class="menu-card">
+                <strong>Spring Roll</strong>
+                <p>$6.50</p>
+                <button class="add-cart-btn" onclick="addToCart('Spring Roll')">Add to Cart</button>
+            </div>
+            <div class="menu-card">
+                <strong>Hyderabadi Mandi</strong>
+                <p>$18.00</p>
+                <button class="add-cart-btn" onclick="addToCart('Hyderabadi Mandi')">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <span class="yellow-tag">Our Reviews</span>
+        <h2>What They Say?</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div style="color: var(--primary-yellow); margin-bottom: 10px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <strong>Ananya Reddy</strong>
+                <p>"Fresh ingredients, creative menu, and warm service make this spot a hidden gem."</p>
+            </div>
+            <div class="review-card">
+                <div style="color: var(--primary-yellow); margin-bottom: 10px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <strong>Ravi Kumar</strong>
+                <p>"Foodie is the best. Very fast delivery and delicious meals! Highly recommended."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <span class="yellow-tag">Subscription</span>
+        <h2>Subscribe To Our Newsletter</h2>
+        <p>Drop your email below to get daily updates, recipes, and exclusive deals.</p>
+        <div style="max-width: 500px; margin: 30px auto; display: flex; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 30px; overflow: hidden;">
+            <input type="email" placeholder="Enter your email" style="padding:18px; flex:1; border:none; outline:none; font-size: 16px;">
+            <button class="signin-btn" style="border-radius:0; padding: 0 30px;">Subscribe</button>
+        </div>
+
+        <div class="discount-banner">
+            <h2>First Order</h2>
+            <h3>GET DISCOUNT 15%</h3>
+            <button class="signin-btn" onclick="alert('Coupon Applied: FIRST15')">Get Discount Code</button>
+        </div>
+    </section>
+
+    <section class="section" id="book-section">
+        <span class="yellow-tag">Reservation</span>
+        <h2>Book Your Table</h2>
+        <div class="book-container">
+            <div class="book-row"><input type="text" placeholder="Full Name"></div>
+            <div class="book-row"><input type="email" placeholder="E-mail Address"></div>
+            <div class="book-row"><input type="date"></div>
+            <div class="book-row"><input type="time"></div>
+            <button class="signin-btn" style="width:100%; margin-top: 10px;" onclick="confirmBooking()">Book Now</button>
+        </div>
+    </section>
+
+    <footer id="contact-footer">
+        <div class="footer-cols">
+            <div>
+                <div class="logo">Foodie.</div>
+                <p>Filling your tummy with delicious food since 2020.</p>
+            </div>
+            <div>
+                <h4>Menu</h4>
+                <p>Breakfast<br>Lunch<br>Dinner<br>Special Offers</p>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <p>About Us<br>Privacy Policy<br>Terms of Service<br>FAQ's</p>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <p>My Account<br>Help Center<br>Contact Us<br>Live Chat</p>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:50px; border-top:1px solid #eee; padding-top:20px; font-size:12px; color: #888;">© 2026 Foodie Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        // Function to handle adding items to the cart
+        function addToCart(itemName) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            
+            // Visual feedback
+            console.log(itemName + " added to cart.");
+            alert(itemName + " has been added to your cart!");
+        }
+
+        // Checkout prompt
+        function checkout() {
+            if (cartCount === 0) {
+                alert("Your cart is empty! Add some delicious food first.");
+            } else {
+                alert("Proceeding to checkout with " + cartCount + " items. Thank you for choosing Foodie!");
+            }
+        }
+
+        // Sign in logic
+        function handleSignIn() {
+            let email = prompt("Please enter your email to Sign In:");
+            if (email) {
+                alert("Welcome back! Signed in as: " + email);
+            }
+        }
+
+        // Booking confirmation
+        function confirmBooking() {
+            alert("Table Reservation Confirmed! We look forward to seeing you.");
+        }
+    </script>
+</body>
+</html>
